@@ -6,7 +6,7 @@
 #    By: zytrams <zytrams@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/08 19:27:06 by zytrams           #+#    #+#              #
-#    Updated: 2019/06/08 19:28:53 by zytrams          ###   ########.fr        #
+#    Updated: 2019/06/12 21:29:28 by zytrams          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,13 @@ MINILIB_DIRECTORY = ./lib/minilibx/sierra/
 OBJS_DIRECTORY = ./objs/
 SRCS_DIRECTORY = ./srcs/
 
-SRCS_LIST = fractol.c
+SRCS_LIST = fractol.c \
+			error_logger.c \
+			get_fractol.c \
+			put_on_image.c \
+			mandelbrot.c \
+			drawer.c \
+			handler.c \
 
 HEADERS_DIRECTORY = ./includes/
 

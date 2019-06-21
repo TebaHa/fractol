@@ -6,7 +6,7 @@
 #    By: zytrams <zytrams@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/08 19:27:06 by zytrams           #+#    #+#              #
-#    Updated: 2019/06/12 21:29:28 by zytrams          ###   ########.fr        #
+#    Updated: 2019/06/21 20:25:33 by zytrams          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,9 @@ SRCS_LIST = fractol.c \
 			get_fractol.c \
 			put_on_image.c \
 			mandelbrot.c \
-			drawer.c \
 			handler.c \
+			cl_init.c \
+			palette.c \
 
 HEADERS_DIRECTORY = ./includes/
 
@@ -46,7 +47,7 @@ OBJS_LIST = $(patsubst %.c, %.o, $(SRCS_LIST))
 all: $(NAME)
 
 $(NAME): $(MINILIB) $(LIBFT) $(OBJS_DIRECTORY) $(OBJS)
-	$(CC) -o $(NAME) $(OBJS) -lmlx -framework OpenGL -framework AppKit -L lib/minilibx/ $(LIBFT) -g
+	$(CC) -o $(NAME) $(OBJS) -lmlx -framework OpenCL -framework OpenGL -framework AppKit -L lib/minilibx/ $(LIBFT) -g
 
 $(OBJS_DIRECTORY):
 	@mkdir -p $(OBJS_DIRECTORY)

@@ -6,13 +6,13 @@
 /*   By: zytrams <zytrams@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 19:29:32 by zytrams           #+#    #+#             */
-/*   Updated: 2019/06/13 16:53:01 by zytrams          ###   ########.fr       */
+/*   Updated: 2019/06/20 21:50:24 by zytrams          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-void			init(t_fractol *fra)
+void			init(t_fractol_base *fra)
 {
 	fra->width = WIDTH;
 	fra->height = HEIGHT;
@@ -26,15 +26,16 @@ void			init(t_fractol *fra)
 
 int				main(int argc, char **argv)
 {
-	t_fractol	fractol;
-	t_image		img;
+	t_fractol_base	fractol;
+	t_image			img;
 
 	fractol.img = &img;
 	if (argc != 2)
 		error_logger(USAGE);
 	init(&fractol);
 	create_fractol(argv[1], &fractol);
-	draw(&fractol);
+	init_cl(&fractol);
+	run_cl(&fractol);
 	mlx_key_hook(fractol.ptr_window, exit_handler, NULL);
 	mlx_mouse_hook(fractol.ptr_window, zoom_handler, &fractol);
 	mlx_loop(fractol.ptr_mlx);

@@ -6,7 +6,7 @@
 /*   By: zytrams <zytrams@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 18:21:26 by zytrams           #+#    #+#             */
-/*   Updated: 2019/06/20 20:52:49 by zytrams          ###   ########.fr       */
+/*   Updated: 2019/06/22 19:12:28 by zytrams          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	create_fractol(char *type, t_fractol_base *fra)
 		init_mandelbrot(fra);
 	}
 	else if (ft_strcmp(type, "julia") == 0)
+	{
 		fra->type = JULIA;
+		init_mandelbrot(fra);
+	}
 	else
 		error_logger(USAGE);
 }

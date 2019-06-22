@@ -24,28 +24,22 @@ typedef struct		s_fractol
 	int				color2;
 	int				color;
 	__global int	*palette;
-	float			cx;
-	float			cy;
-	float			zx;
-	float			zy;
-	float			xtemp;
-	float			left;
-	float			top;
-	float			xside;
-	float			yside;
-	float			scale;
-	float			log_zn;
-	float			nu;
-	float			inter;
+	double			cx;
+	double			cy;
+	double			zx;
+	double			zy;
+	double			xtemp;
+	double			left;
+	double			top;
+	double			xside;
+	double			yside;
+	double			scale;
+	double			log_zn;
+	double			nu;
+	double			inter;
 }					t_fractol;
 
-float				imodf(float value, int *iptr)
-{
-		*iptr = trunc(value);
-		return ((float)copysign((float)(isinf(value) ? 0.0 : value -  *iptr), (float)value));
-}
-
-float				lerp(float s, float e, float t)
+double				lerp(double s, double e, double t)
 {
 	return (s + ( e - s ) * t);
 }
@@ -56,6 +50,24 @@ void				put_on_image(int x, int y, int color, t_fractol data, __global int *mem_
 
 	offset = x + data.width * y;
 	mem_img[offset] = color;
+}
+
+void				julia(t_fractol data, __global int *palette, __global int *mem_img)
+{
+	data.cx = data.x * data.scale + data.left;
+	data.cy = data.y * data.scale + data.top;
+	data.zx = 0.0;
+	data.zy = 0.0;
+	data.i = 0;
+	data.mi = data.iter;
+	while (((data.zx * data.zx + data.zy * data.zy) <= (1 << 16)) && data.i < data.iter)
+	{
+		data.xtemp = data.zx * data.zx - data.zy * data.zy;
+		data.zy = 2 * data.zx * data.zy  + data.cy;
+		data.zx = data.xtemp + data.cx;
+		data.i++;
+	}
+	put_on_image(data.x, data.y, palette[data.i], data, mem_img);
 }
 
 void				mandelbrot(t_fractol data, __global int *palette, __global int *mem_img)
@@ -73,25 +85,29 @@ void				mandelbrot(t_fractol data, __global int *palette, __global int *mem_img)
 		data.zx = data.xtemp;
 		data.i++;
 	}
+	/*
 	if (data.i < data.mi)
 	{
-		data.log_zn = (float)log((float)((data.zx) * (data.zx) + (data.zy) * (data.zy))) / 2.0;
-		data.nu = (float)log((float)((float)(data.log_zn) / log(2.0))) / log(2.0);
+		data.log_zn = (double)log((double)((data.zx) * (data.zx) + (data.zy) * (data.zy))) / 2.0;
+		data.nu = (double)log((double)data.log_zn / log(2.0)) / log(2.0);
 		data.inter = data.i + 1 - data.nu;
-		data.color1 = data.palette[(int)floor(data.inter)];
-		data.color2 = data.palette[((int)floor(data.inter) + 1)];
-		data.color = lerp(data.color1, data.color2, (float)modf(data.inter, &data.nu));
-		put_on_image(data.x, data.y, data.color, data, mem_img);
 	}
 	else
 	{
-		put_on_image(data.x, data.y, 0x000000, data, mem_img);
+		data.inter = data.i;
 	}
+	data.color1 = data.palette[data.i];
+	data.color2 = data.palette[(data.i + 1)];
+	data.color = lerp(data.color1, data.color2, (double)modf(data.i, &data.nu));*/
+	put_on_image(data.x, data.y, palette[data.i], data, mem_img);
 }
 
 static void			render(t_fractol data, __global int *mem_img)
 {
-	mandelbrot(data, data.palette, mem_img);
+	if (data.type == 1)
+		mandelbrot(data, data.palette, mem_img);
+	else
+		julia(data, data.palette, mem_img);
 }
 
 __kernel void		test(__global int *int_mem, __global double *double_mem, __global int *mem_img, __global int *palette)

@@ -6,7 +6,7 @@
 /*   By: zytrams <zytrams@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 19:29:50 by zytrams           #+#    #+#             */
-/*   Updated: 2019/06/21 20:25:14 by zytrams          ###   ########.fr       */
+/*   Updated: 2019/06/23 20:42:45 by zytrams          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # define HAPPY ((int[4]){0xA7413C, 0xE4572E, 0xFF9C14, 0xEEC53C})
 # define IS_THIS_IT ((int[4]){0x82C0C9, 0xD14A3E, 0xFFC43A, 0x82C0C9})
 # define PROGRAM_FILE "./srcs/fractol_kernel.cl"
+# define YELLOW_FREEDOME 0xE69800, 0xFCFFB2,
+# define GREEN_BLUE 0x3399FF, 0xFFE5FF,
+# define BLACK_AND_WHITE 0x000000, 0xFFFFFF,
 
 # include <libft.h>
 # include <math.h>
@@ -77,12 +80,13 @@ typedef struct			s_fractol_base
 	int					width;
 	int					height;
 	int					iter;
+	int					*palette;
+	int					color_type;
 	double				left;
 	double				top;
 	double				xside;
 	double				yside;
 	double				scale;
-	int					*palette;
 }						t_fractol_base;
 
 

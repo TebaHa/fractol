@@ -6,7 +6,7 @@
 /*   By: zytrams <zytrams@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 19:12:04 by zytrams           #+#    #+#             */
-/*   Updated: 2019/06/22 20:09:36 by zytrams          ###   ########.fr       */
+/*   Updated: 2019/06/23 21:17:11 by zytrams          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ void		init_mandelbrot(t_fractol_base *fra)
 	fra->top = -3;
 	fra->left = -5;
 	fra->iter = 100;
+	fra->color_type = 1;
 	fra->calc.cx = 0.0;
 	fra->calc.cy = 0.0;
 	fra->calc.zx = 0.0;
 	fra->calc.zy = 0.0;
 	fra->calc.i = 0;
 	fra->calc.mi = fra->iter;
-	fra->palette = palette_generator(0xE69800, 0xFCFFB2, fra->iter);
+	fra->palette = palette_generator(YELLOW_FREEDOME fra->iter);
 }

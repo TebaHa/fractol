@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   burningship.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zytrams <zytrams@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/09 19:12:04 by zytrams           #+#    #+#             */
-/*   Updated: 2019/06/25 19:07:56 by zytrams          ###   ########.fr       */
+/*   Created: 2019/06/25 17:33:57 by zytrams           #+#    #+#             */
+/*   Updated: 2019/06/25 19:41:56 by zytrams          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-void		init_mandelbrot(t_fractol_base *fra)
+void		init_burningship(t_fractol_base *fra)
 {
 	fra->xside = 8;
 	fra->yside = 5;

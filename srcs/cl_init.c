@@ -6,7 +6,7 @@
 /*   By: zytrams <zytrams@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 17:14:47 by zytrams           #+#    #+#             */
-/*   Updated: 2019/06/21 20:55:32 by zytrams          ###   ########.fr       */
+/*   Updated: 2019/06/25 20:37:46 by zytrams          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static	void	costil(t_fractol_base *frc, int *mem, double *dmem)
 	mem[3] = frc->iter;
 	mem[5] = frc->calc.i;
 	mem[6] = frc->calc.mi;
+	mem[7] = frc->type;
+	mem[8] = frc->color_type;
 	dmem[0] = frc->calc.cx;
 	dmem[1] = frc->calc.cy;
 	dmem[2] = frc->calc.zx;
@@ -63,6 +65,8 @@ static	void	costil(t_fractol_base *frc, int *mem, double *dmem)
 	dmem[5] = frc->left;
 	dmem[6] = frc->top;
 	dmem[7] = frc->scale;
+	dmem[8] = frc->julesx;
+	dmem[9] = frc->julesy;
 }
 
 static void			cl_meminit(t_fractol_base *frc)

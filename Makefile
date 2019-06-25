@@ -6,7 +6,7 @@
 #    By: zytrams <zytrams@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/08 19:27:06 by zytrams           #+#    #+#              #
-#    Updated: 2019/06/21 20:25:33 by zytrams          ###   ########.fr        #
+#    Updated: 2019/06/25 18:20:23 by zytrams          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SRCS_LIST = fractol.c \
 			handler.c \
 			cl_init.c \
 			palette.c \
+			julia.c \
+			burningship.c \
 
 HEADERS_DIRECTORY = ./includes/
 

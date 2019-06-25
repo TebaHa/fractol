@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zytrams <zytrams@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/09 19:12:04 by zytrams           #+#    #+#             */
-/*   Updated: 2019/06/25 19:07:56 by zytrams          ###   ########.fr       */
+/*   Created: 2019/06/24 18:54:53 by zytrams           #+#    #+#             */
+/*   Updated: 2019/06/24 20:46:07 by zytrams          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-void		init_mandelbrot(t_fractol_base *fra)
+void		init_julia(t_fractol_base *fra)
 {
 	fra->xside = 8;
 	fra->yside = 5;
@@ -27,4 +27,7 @@ void		init_mandelbrot(t_fractol_base *fra)
 	fra->calc.zy = 0.0;
 	fra->calc.i = 0;
 	fra->calc.mi = fra->iter;
+	fra->julesx = 0.271250;
+	fra->julesy = 0.000000;
+	fra->jules = -1;
 }

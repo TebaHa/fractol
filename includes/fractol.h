@@ -6,15 +6,16 @@
 /*   By: zytrams <zytrams@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 19:29:50 by zytrams           #+#    #+#             */
-/*   Updated: 2019/06/23 20:42:45 by zytrams          ###   ########.fr       */
+/*   Updated: 2019/06/25 20:22:39 by zytrams          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define USAGE "Usage : ./fractol <fractal_type> [\'mandelbrot\', \'julia\']\n"
+# define USAGE "Usage : ./fractol <fractal_type> [\'mandelbrot\', \'julia\', \'burningship\']\n"
 # define MANDELBROT 1
 # define JULIA 2
+# define BURNINGSHIP 3
 # define WHITE 16777215
 # define WIDTH 2000
 # define HEIGHT 1200
@@ -22,11 +23,11 @@
 # define SCROLL_DOWN 5
 # define EXIT 53
 # define HAPPY ((int[4]){0xA7413C, 0xE4572E, 0xFF9C14, 0xEEC53C})
-# define IS_THIS_IT ((int[4]){0x82C0C9, 0xD14A3E, 0xFFC43A, 0x82C0C9})
 # define PROGRAM_FILE "./srcs/fractol_kernel.cl"
 # define YELLOW_FREEDOME 0xE69800, 0xFCFFB2,
-# define GREEN_BLUE 0x3399FF, 0xFFE5FF,
+# define GREEN_BLUE 0x66B2FF, 0xFFE5FF,
 # define BLACK_AND_WHITE 0x000000, 0xFFFFFF,
+# define BLUE_AND_BLACK 0x000000, 0xFF33FF,
 
 # include <libft.h>
 # include <math.h>
@@ -82,11 +83,14 @@ typedef struct			s_fractol_base
 	int					iter;
 	int					*palette;
 	int					color_type;
+	int					jules;
 	double				left;
 	double				top;
 	double				xside;
 	double				yside;
 	double				scale;
+	double				julesx;
+	double				julesy;
 }						t_fractol_base;
 
 
@@ -105,5 +109,8 @@ void					create_device(t_fractol_base *frc);
 char					*read_file(char *path);
 void					run_cl(t_fractol_base *frc);
 int						*palette_generator(int start, int end, int iters);
+void					init_julia(t_fractol_base *fra);
+int	 					julia_handler(int x, int y, void *param);
+void					init_burningship(t_fractol_base *fra);
 
 #endif

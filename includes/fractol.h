@@ -6,13 +6,13 @@
 /*   By: zytrams <zytrams@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 19:29:50 by zytrams           #+#    #+#             */
-/*   Updated: 2019/06/25 20:22:39 by zytrams          ###   ########.fr       */
+/*   Updated: 2019/06/28 20:23:20 by zytrams          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define USAGE "Usage : ./fractol <fractal_type> [\'mandelbrot\', \'julia\', \'burningship\']\n"
+# define USAGE "Usage : ./fractol <fractal_type>\n"
 # define MANDELBROT 1
 # define JULIA 2
 # define BURNINGSHIP 3
@@ -55,7 +55,6 @@ typedef struct			s_image
 	int					endian;
 }						t_image;
 
-/* OpenCL structures */
 typedef struct			s_cl_struct
 {
 	cl_device_id		device;
@@ -93,24 +92,31 @@ typedef struct			s_fractol_base
 	double				julesy;
 }						t_fractol_base;
 
-
 void					create_fractol(char *type, t_fractol_base *fra);
 void					error_logger(char *error);
 void					init(t_fractol_base *fra);
-void					put_on_image(int x, int y, int color, t_fractol_base *frc);
+void					put_on_image(int x, int y,
+								int color, t_fractol_base *frc);
 void					mandelbrot(t_fractol_base *frc, int *palette);
-void					mandelbrot_helper(int x, int y, int *palette, t_fractol_base *frc);
+void					mandelbrot_helper(int x, int y,
+							int *palette, t_fractol_base *frc);
 void					draw(t_fractol_base *frc);
-int						zoom_handler(int keycode, int x, int y, void *param);
+int						zoom_handler(int keycode, int x,
+										int y, void *param);
 void					init_mandelbrot(t_fractol_base *fra);
-int						exit_handler(int keycode, void *param);
+int						handler(int keycode, void *param);
 void					init_cl(t_fractol_base *frc);
 void					create_device(t_fractol_base *frc);
 char					*read_file(char *path);
 void					run_cl(t_fractol_base *frc);
 int						*palette_generator(int start, int end, int iters);
 void					init_julia(t_fractol_base *fra);
-int	 					julia_handler(int x, int y, void *param);
+int						julia_handler(int x, int y, void *param);
 void					init_burningship(t_fractol_base *fra);
+void					get_palette(int keycode, int **palette, int iters);
+void					ft_exit(t_fractol_base *frc);
+void					fractol_reinit(int keycode, t_fractol_base *frc);
+void					release_resources(t_cl_struct *cl_s);
+void					rgb_calc(int rgb[3], int s_e[2], int iters, int i);
 
 #endif

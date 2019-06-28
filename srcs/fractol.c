@@ -6,7 +6,7 @@
 /*   By: zytrams <zytrams@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 19:29:32 by zytrams           #+#    #+#             */
-/*   Updated: 2019/06/24 19:40:06 by zytrams          ###   ########.fr       */
+/*   Updated: 2019/06/28 20:23:12 by zytrams          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int				main(int argc, char **argv)
 	create_fractol(argv[1], &fractol);
 	init_cl(&fractol);
 	run_cl(&fractol);
-	mlx_key_hook(fractol.ptr_window, exit_handler, &fractol);
+	mlx_key_hook(fractol.ptr_window, handler, &fractol);
 	mlx_mouse_hook(fractol.ptr_window, zoom_handler, &fractol);
 	mlx_hook(fractol.ptr_window, 6, 0, julia_handler, &fractol);
 	mlx_loop(fractol.ptr_mlx);

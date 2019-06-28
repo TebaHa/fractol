@@ -78,8 +78,8 @@ void				burningship(t_fractol data, __global int *palette, __global int *mem_img
 
 void				julia(t_fractol data, __global int *palette, __global int *mem_img)
 {
-	data.cx = data.y * data.scale + data.top;
-	data.cy = data.x * data.scale + data.left;
+	data.cx = data.x * data.scale + data.left;
+	data.cy = data.y * data.scale + data.top;
 	data.i = 0;
 	data.mi = data.iter;
 	while (((data.cx * data.cx + data.cy * data.cy) < 4) && data.i < data.iter)
@@ -142,9 +142,9 @@ static void			render(t_fractol data, __global int *mem_img)
 
 __kernel void		test(__global int *int_mem, __global double *double_mem, __global int *mem_img, __global int *palette)
 {
-	t_fractol	data;
-	int 		gid;
-	int 		flg;
+	t_fractol		data;
+	int 			gid;
+	int 			flg;
 
 	gid = get_global_id(0);
 	flg = int_mem[2];

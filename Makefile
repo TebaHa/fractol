@@ -6,13 +6,13 @@
 #    By: zytrams <zytrams@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/08 19:27:06 by zytrams           #+#    #+#              #
-#    Updated: 2019/06/25 18:20:23 by zytrams          ###   ########.fr        #
+#    Updated: 2019/06/28 16:27:25 by zytrams          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 CC = gcc
-FLAGS = -g -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -c
 
 LIBFT = $(LIBFT_DIRECTORY)libft.a
 LIBFT_DIRECTORY = ./lib/libft/
@@ -26,7 +26,7 @@ SRCS_DIRECTORY = ./srcs/
 
 SRCS_LIST = fractol.c \
 			error_logger.c \
-			get_fractol.c \
+			create_fractol.c \
 			put_on_image.c \
 			mandelbrot.c \
 			handler.c \
@@ -34,6 +34,8 @@ SRCS_LIST = fractol.c \
 			palette.c \
 			julia.c \
 			burningship.c \
+			cl_release.c \
+			reader.c \
 
 HEADERS_DIRECTORY = ./includes/
 

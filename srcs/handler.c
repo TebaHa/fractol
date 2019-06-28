@@ -6,7 +6,7 @@
 /*   By: zytrams <zytrams@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 21:05:52 by zytrams           #+#    #+#             */
-/*   Updated: 2019/06/25 20:34:00 by zytrams          ###   ########.fr       */
+/*   Updated: 2019/06/28 20:23:01 by zytrams          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		zoom_handler(int keycode, int x, int y, void *param)
 	return (0);
 }
 
-int	 	julia_handler(int x, int y, void *param)
+int		julia_handler(int x, int y, void *param)
 {
 	t_fractol_base	*frc;
 
@@ -49,31 +49,23 @@ int	 	julia_handler(int x, int y, void *param)
 	return (0);
 }
 
-int		exit_handler(int keycode, void *param)
+int		handler(int keycode, void *param)
 {
 	t_fractol_base	*frc;
 
 	frc = (t_fractol_base *)param;
-	if (keycode == 18)
-	{
-		free(frc->palette);
-		frc->palette = palette_generator(YELLOW_FREEDOME frc->iter);
-	}
-	else if (keycode == 19)
-	{
-		free(frc->palette);
-		frc->palette = palette_generator(GREEN_BLUE frc->iter);
-	}
-	else if (keycode == 20)
-	{
-		free(frc->palette);
-		frc->palette = palette_generator(BLACK_AND_WHITE frc->iter);
-	}
-	else if (keycode == 21)
-	{
-		free(frc->palette);
-		frc->palette = palette_generator(BLUE_AND_BLACK frc->iter);
-	}
+	fractol_reinit(keycode, frc);
+	get_palette(keycode, &frc->palette, frc->iter);
+	if (keycode == 8)
+		frc->color_type *= -1;
+	run_cl(frc);
+	if (keycode == 53)
+		ft_exit(frc);
+	return (0);
+}
+
+void	fractol_reinit(int keycode, t_fractol_base *frc)
+{
 	if (keycode == 83)
 	{
 		init_mandelbrot(frc);
@@ -89,10 +81,10 @@ int		exit_handler(int keycode, void *param)
 		init_burningship(frc);
 		frc->type = BURNINGSHIP;
 	}
-	if (keycode == 8)
-		frc->color_type *= -1;
-	run_cl(frc);
-	if (keycode == EXIT)
-		exit(0);
-	return (0);
+}
+
+void	ft_exit(t_fractol_base *frc)
+{
+	release_resources(&frc->cl_structs);
+	exit(0);
 }
